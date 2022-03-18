@@ -1,57 +1,45 @@
 <main>
+    <div class="col col-lg-2">
 
-    <h1>{{ title }}</h1>
-    <div class="row">
-        <aside class="col-md-3 mb-3">
-            <div class="form-group">
-                <label for="search-text">Search:</label>
-                <input class="form-control" type="text" id="search-text" aria-describedby="search-text" autocomplete="off" placeholder="Search..." [(ngModel)]="searchText">
-                <!-- [(ngModel)]="searchText"> вставить этот код в строку выше инпут в конце -->
-
-            </div>
-            <p>Sort By:</p>
-            <!-- <select name="" id=""> -->
-            <select (change)="selectChangeHandler($event)" class="mb-3">  <!-- заменить этим кодом строку выше-->
-        <option value="age">Newest</option>
-        <option value="name">Alphabetically</option>
-            </select>
-        </aside>
-        <section class="col-mb-9">
-            <ul>
-                <li class="phones" *ngFor="let phone of productList">
-                    <h3>
-                        {{ phone.name }}
-                    </h3>
-                    <!--дальше  | filter:search-text | orderBy: 'age"> -->
-                    <!--вставить этот код  в ли выше который-->
-                    <!-- <div *ngFor="let item of items | orderBy: 'id'"> {{ item }} </div> -->
-                    <!-- новый вариант. тот что выше не работает у дэбики         -->-->
-                    <div class="conteiner-fluid">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <figure>
-                                    <!-- <img class="img-fluid" src=" " alt="phone-image"> -->
-                                    <img class="img-fluid" src="{{ 'assets/' +  phone.imageUrl }} " alt="phone-image" routerLink="{{  '/phone-detail' + phone.id }}">
-                                    <!-- <img class="img-fluid" src="../../assets/{{ phones.imageUrl }} " alt="phone-image"> -->
-                                </figure>
-                            </div>
-                            <div class="col-md-8">
-                                <h2>
-                                    <!-- <a routerLink="" {{ '/item/' + phone.id }}>{{ phone.name }}</a> -->
-                                </h2>
-                                <p>{{ phone.snippet }}</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </li>
-            </ul>
-
-        </section>
+        <h2>{{ title }}:</h2>
 
 
+        <input placeholder="Search" type="search" [(ngModel)]="term">
+        <br>
 
+        <select class="sort" (change)="sortBy($event)">
+            <option value="search" selected disabled hidden>Search by</option>
+            <option value="age">Newest</option>
+            <option value="name">Alphabetical</option>
+        </select>
     </div>
-    <p>phone-list</p>
+
+    <section class="phone-list">
+
+        <div class="card mb-3" *ngFor="let phone of productsList">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <figure class="photo">
+                        <img height="150" width="140" src="{{ 'assets/' + phone.imageUrl }} " routerLink="{{ '/details/' + phone.id }}">
+                    </figure>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-8">
+                <div class="card-body ">
+                    <h5 class="card-title" routerLink="{{ '/details/' + phone.id }}">
+                        <a routerLink="{{ '/details' + phone.id }}">{{ phone.name }}</a>
+
+                    </h5>
+
+
+                    <p class="card-text ">{{ phone.snippet }}</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
 </main>

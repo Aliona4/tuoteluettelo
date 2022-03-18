@@ -1,33 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-// import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PhoneListComponent } from './phone-list/phone-list.component';
+import { FormsModule } from '@angular/forms';
+import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
 import { AppRoutingModule } from './app-routing.module';
+import {CommonModule} from '@angular/common';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PhoneDetailComponent,
-    PhoneListComponent
+    
+    PhoneListComponent,
+    PhoneDetailComponent
   ],
   imports: [
     BrowserModule,
-    // CommonModule,
-    FormsModule,
-    // AngularFontAwesomeModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    FontAwesomeModule,
+    FormsModule,
+    Ng2SearchPipeModule
   ],
-
-  
   providers: [],
   bootstrap: [AppComponent]
 })

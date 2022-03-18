@@ -1,47 +1,55 @@
-import { Component, OnInit } from '@angular/core';
- import { Phones } from '../phone';
-// import { Phones } from '../phone';
+ import { Component, OnInit } from '@angular/core';
+
 import { PhoneService } from '../phone.service';
+import { Phones } from '../phone';
 
 @Component({
   selector: 'app-phone-list',
-  templateUrl: './phone-list.component.html',
+  templateUrl:'./phone-list.component.html',
   styleUrls: ['./phone-list.component.css']
+  
 })
 export class PhoneListComponent implements OnInit {
-  title = 'Tuoteluettelo';
-  // phone: phone;
-  productList!: any[];
-  searchText: string | undefined;
-  order = '';
-  products: any;
-  // products: any;
+    title = 'Tuoteluettelo';
+    productsList!: any[];
+    phones!: Phones[];
+    term: string = '';
+    selectedSort: string = '';
+   
 
-  selectChangeHandler(event: any) {
-    this.order = event.target.value;
-  }
-  
-  constructor(
-    public phoneService: PhoneService
-  ) { }
+  constructor(public phoneService: PhoneService) { 
+   
+ }
 
   ngOnInit(): void {
     this.getProducts();
   }
 
   getProducts(): void {
-    this.phoneService.getAllProducts().subscribe((data: any[]) => {
-      this.productList = data;
-    },
-      // this.phoneService.getProducts().subscribe((products: any) => this.products = products);
-      // this.phoneService.getProducts().subscribe((data: any[] | undefined) => {
-      //   this.productList = data;
-     
+    this.phoneService.getAllProducts().subscribe(
+      (data: any[]) => {
+        this.productsList = data;
+      },
       (error: any) => {
         console.log('http-error:');
         console.log(error);
       }
     );
-
   }
-}
+  
+  sortBy(event: any) {
+    this.selectedSort = event.target.value;
+    if (this.selectedSort == 'name') {
+      this.productsList.sort(function (a, b) {
+       return a.name.localeCompare(b.name)
+      });
+    } else if (this.selectedSort == 'age') {
+      this.productsList.sort(function (a, b) {
+        return parseInt(a.age) - parseInt(b.age);
+      });
+    }
+    
+  }
+  
+  }
+     
