@@ -4,11 +4,11 @@
         <h2>{{ title }}:</h2>
 
 
-        <input placeholder="Search" type="search" [(ngModel)]="term">
+        <input placeholder="Search" type="search" [(ngModel)]="filterTerm">
         <br>
 
         <select class="sort" (change)="sortBy($event)">
-            <option value="search" selected disabled hidden>Search by</option>
+            <option value="search" selected disabled hidden>Sort</option>
             <option value="age">Newest</option>
             <option value="name">Alphabetical</option>
         </select>
@@ -16,7 +16,7 @@
 
     <section class="phone-list">
 
-        <div class="card mb-3" *ngFor="let phone of productsList">
+        <div class="card mb-3" *ngFor="let phone of productsList | filter: filterTerm">
             <div class="row g-0">
                 <div class="col-md-4">
                     <figure class="photo">

@@ -8,13 +8,12 @@ import { PhoneListComponent } from './phone-list/phone-list.component';
 import { FormsModule } from '@angular/forms';
 import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
 import { AppRoutingModule } from './app-routing.module';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
     PhoneListComponent,
     PhoneDetailComponent
   ],

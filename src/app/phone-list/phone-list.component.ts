@@ -13,7 +13,8 @@ export class PhoneListComponent implements OnInit {
     title = 'Tuoteluettelo';
     productsList!: any[];
     phones!: Phones[];
-    term: string = '';
+    // term: string = '';
+  filterTerm!: string;
     selectedSort: string = '';
    
 

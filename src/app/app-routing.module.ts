@@ -5,10 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { PhoneListComponent } from './phone-list/phone-list.component';
 
 const routes: Routes = [
+
   { path: '', redirectTo: '/phones-list', pathMatch: 'full' },
-  
-  { path: 'phone-list', component: PhoneListComponent },
-  { path: 'details/:id', component: PhoneDetailComponent },
+  { path: 'phones-list', component: PhoneListComponent },
+  { path: 'details/:id', component: PhoneDetailComponent }
 
 ];
 
